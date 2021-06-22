@@ -1,0 +1,25 @@
+#### before begin{document} and /maketitle
+
+\makeatletter
+ \let\old@ps@headings\ps@headings
+ \let\old@ps@IEEEtitlepagestyle\ps@IEEEtitlepagestyle
+ \def\confheader#1{%
+ % for all pages except the first
+ \def\ps@headings{%
+ \old@ps@headings%
+ \def\@oddhead{\strut\hfill#1\hfill\strut}%
+ \def\@evenhead{\strut\hfill#1\hfill\strut}%
+ }%
+ % for the first page
+ \def\ps@IEEEtitlepagestyle{%
+ \old@ps@IEEEtitlepagestyle%
+ \def\@oddhead{\strut\hfill#1\hfill\strut}%
+ \def\@evenhead{\strut\hfill#1\hfill\strut}%
+ }%
+ \ps@headings%
+ }
+ \makeatother
+
+\confheader{%
+ International Conference on Automation, Control and Mechatronics for Industry 4.0 (ACMI), 8-9 July 2021, Rajshahi, Bangladesh
+ }
